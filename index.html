@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>开州中学 · 学生视界</title>
+    <meta name="description" content="开州中学学生自制宣传站——运动会、缤纷节、校园风采，由同学记录，非官方。">
+    <!--  favicon / apple-touch-icon  -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23FA9427'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='sans-serif'%3E开%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23FA9427'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white'%3E开%3C/text%3E%3C/svg%3E">
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+    <!-- 主样式 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 合规弹窗 (第一次访问) -->
+    <div id="complianceModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-card">
+            <h2 id="modalTitle">📢 这不是官方站点</h2>
+            <p>本网站由开州中学学生自主制作，用于展示校园文化与学生视角，<strong>非重庆市开州中学官方网站</strong>。</p>
+            <p>如需联系学校官方，请搜索微信公众号「重庆市开州中学」、抖音官方账号，或致电/致函学校。</p>
+            <p>本站内容为学生创作，不对信息准确性作任何担保。继续浏览即表示你已了解。</p>
+            <div class="modal-actions">
+                <button id="acceptModal" class="btn btn-primary">我知道了，进入网站</button>
+            </div>
+            <p class="modal-small"><a href="#" id="declineModal" class="mute-link">退出</a> (将跳转至学校公众号指引)</p>
+        </div>
+    </div>
+
+    <!-- 全局设置面板 (设置菜单) -->
+    <div id="settingsPanel" class="settings-panel" aria-hidden="true">
+        <div class="settings-inner">
+            <div class="settings-header">
+                <h3>⚙️ 偏好设置</h3>
+                <button id="closeSettingsBtn" aria-label="关闭设置">✕</button>
+            </div>
+            <div class="settings-section">
+                <p class="settings-label">📱 界面模式 (即时切换)</p>
+                <div class="mode-grid">
+                    <button data-mode="ios" class="mode-btn">🍎 iOS 底栏</button>
+                    <button data-mode="android" class="mode-btn">🤖 Android 汉堡</button>
+                    <button data-mode="desktop" class="mode-btn">🖥️ 桌面键鼠</button>
+                    <button data-mode="touch" class="mode-btn">✍️ 触屏平板</button>
+                </div>
+                <p class="hint">iOS: 底部导航栏 / Android: 左上汉堡菜单 / 桌面&触屏自适应</p>
+            </div>
+            <div class="settings-section">
+                <p class="settings-label">♿ 轻松使用</p>
+                <label class="toggle-item">
+                    <input type="checkbox" id="highContrastToggle"> 高对比度模式
+                </label>
+                <label class="toggle-item">
+                    <input type="checkbox" id="reduceMotionToggle"> 减弱动态效果
+                </label>
+            </div>
+            <div class="settings-footer">
+                <button id="resetSettings" class="btn-text">恢复默认</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主应用容器 -->
+    <div id="app" class="app-container">
+        <!-- 顶部Header (桌面/Android共用，但Android汉堡菜单在内部) -->
+        <header class="main-header">
+            <div class="header-left">
+                <!-- Android模式下的汉堡按钮 (由JS控制显示) -->
+                <button id="hamburgerBtn" class="hamburger-btn" aria-label="菜单" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <a href="#" class="logo-link" aria-label="开州中学·学生视界">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3E%3Crect width='200' height='50' rx='8' fill='%23FA9427'/%3E%3Ctext x='20' y='35' font-family='Bebas Neue' font-size='28' fill='white'%3E开州中学%3C/text%3E%3Ctext x='130' y='32' font-family='sans-serif' font-size='12' fill='%23FFE0B2'%3E学生视界%3C/text%3E%3C/svg%3E" alt="开州中学" class="logo-img">
+                </a>
+            </div>
+            <nav class="desktop-nav" id="desktopNav">
+                <a href="#news">动态</a>
+                <a href="#sports">运动会</a>
+                <a href="#arts">缤纷节</a>
+                <a href="#campus">校园</a>
+                <a href="#forum">开中论坛</a>
+            </nav>
+            <div class="header-right">
+                <button id="settingsToggle" class="icon-btn" aria-label="设置">⚙️</button>
+                <!-- 简洁语言/辅助标识 -->
+            </div>
+        </header>
+
+        <!-- 侧滑菜单 (Android / 移动汉堡内容) -->
+        <nav id="slideMenu" class="slide-menu" aria-hidden="true">
+            <div class="slide-menu-inner">
+                <button id="closeMenuBtn" class="close-menu" aria-label="关闭菜单">✕</button>
+                <ul>
+                    <li><a href="#news">📰 最新动态</a></li>
+                    <li><a href="#sports">🏃 运动会</a></li>
+                    <li><a href="#arts">🎨 缤纷艺术节</a></li>
+                    <li><a href="#campus">🏫 校园风采</a></li>
+                    <li><a href="#teachers">👩‍🏫 师生掠影</a></li>
+                    <li><a href="#forum">💬 开中论坛 (QQ频道)</a></li>
+                </ul>
+                <div class="menu-footer">
+                    <p>学生自制 · 非官方</p>
+                </div>
+            </div>
+        </nav>
+        <div id="menuOverlay" class="menu-overlay"></div>
+
+        <!-- 主内容 -->
+        <main id="mainContent">
+            <!-- Hero 区域 -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>这里是开州中学<br>由我们记录</h1>
+                    <p class="hero-sub">运动会 · 缤纷节 · 日常光芒</p>
+                    <a href="#forum" class="hero-btn">📱 加入开中论坛</a>
+                </div>
+                <div class="hero-ornament"></div>
+            </section>
+
+            <!-- 最新动态 (NEWS风格) -->
+            <section id="news" class="section-news">
+                <div class="container">
+                    <h2 class="section-title brush-news">📋 最新动态</h2>
+                    <div class="news-grid" id="newsGrid">
+                        <!-- 动态卡片由JS生成，也可以静态写 -->
+                    </div>
+                    <div class="more-link-wrap">
+                        <a href="#" class="btn-more">查看更多动态 →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 运动会 & 缤纷节 双卡片 -->
+            <section class="section-highlights">
+                <div class="container split-container">
+                    <div id="sports" class="highlight-card sports-card">
+                        <div class="card-img"><span>🏆</span></div>
+                        <h3>秋季运动会</h3>
+                        <p>百米冲刺、接力、趣味项目。同学镜头下的汗水与呐喊。</p>
+                        <a href="#" class="card-link">浏览图集 →</a>
+                    </div>
+                    <div id="arts" class="highlight-card arts-card">
+                        <div class="card-img"><span>🎭</span></div>
+                        <h3>缤纷艺术节</h3>
+                        <p>十佳歌手、戏剧、书画展。艺术从不设限。</p>
+                        <a href="#" class="card-link">回顾精彩 →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 校园风采 / 师生照片视频 -->
+            <section id="campus" class="section-campus">
+                <div class="container">
+                    <h2 class="section-title">📸 校园掠影</h2>
+                    <div class="gallery-teaser">
+                        <div class="gallery-item">🌳 林荫道</div>
+                        <div class="gallery-item">📚 图书馆</div>
+                        <div class="gallery-item">⚽ 足球场</div>
+                        <div class="gallery-item">🧪 实验室</div>
+                    </div>
+                    <p class="campus-note">* 更多师生影像请通过论坛获取，或向管理员投稿。</p>
+                </div>
+            </section>
+
+            <!-- 开中论坛 (QQ频道) 链接区 -->
+            <section id="forum" class="section-forum">
+                <div class="container forum-container">
+                    <div class="forum-info">
+                        <h2>💬 开中论坛 · QQ频道</h2>
+                        <p>学生聚集地，吹水、互助、活动通知。非官方，自由交流。</p>
+                        <a href="https://pd.qq.com/s/8xpnqh728?b=5" target="_blank" rel="noopener noreferrer" class="forum-btn">点击加入腾讯频道</a>
+                        <p class="small">或扫描二维码 (请向站长索取)</p>
+                    </div>
+                    <div class="forum-qr-placeholder">
+                        <div class="qr-mock">[开中论坛<br>二维码]</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- iOS 底栏 (默认隐藏，由mode控制) -->
+        <nav class="ios-tabbar" id="iosTabbar">
+            <a href="#news" class="tab-item">📰 动态</a>
+            <a href="#sports" class="tab-item">🏃 运动</a>
+            <a href="#arts" class="tab-item">🎨 缤纷</a>
+            <a href="#campus" class="tab-item">📸 校园</a>
+            <a href="#forum" class="tab-item">💬 论坛</a>
+        </nav>
+
+        <!-- 页脚 -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <p>© 2025 开州中学学生宣传组 (非官方)  ·  图片投稿/联系: 通过论坛</p>
+                <p>学校官方公众号: 重庆市开州中学  ·  抖音: 开州中学官方</p>
+                <p><a href="#" id="showComplianceAgain">📋 网站声明</a>  ·  <button id="a11ySettingsTrigger" class="link-btn">♿ 轻松使用</button></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="script.js"></script>
+</body>
+</html>
