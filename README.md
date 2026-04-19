@@ -1,2 +1,2 @@
-# Chongqing-Kaizhou-Secondary-School
-A website for Chongqing Kaizhou Secondary School
+# 重庆市开州中学
+重庆市开州中学网站，学生制作，非官方！
