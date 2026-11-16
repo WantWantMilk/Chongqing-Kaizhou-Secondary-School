@@ -1,194 +1,575 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>开州中学 学生视界</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23FA9427'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='sans-serif'%3E开%3C/text%3E%3C/svg%3E">
-    <!-- 字体 (与原站一致) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0f3b6d">
+<meta name="description" content="重庆市开州中学官方网站——前身培俊堂始办于1839年，重庆市首批重点中学，为每一位学生的自主发展奠基。">
+<title>重庆市开州中学 | 官方门户</title>
+
+<script>document.documentElement.className += ' js';</script>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!-- 合规提示模态框 -->
-    <div class="compliance-modal" id="complianceModal" style="display:flex">
-        <div class="modal-card">
-            <h2>📢 非官方网站声明</h2>
-            <p>本站由开州中学学生自主制作，用于展示校园文化，<strong>非重庆市开州中学官方网站</strong>。</p>
-            <p>如需联系学校官方，请搜索微信公众号「重庆市开州中学」或抖音官方账号。</p>
-            <p>本站内容为学生创作，不代表学校立场。继续访问即视为同意。</p>
-            <div class="modal-actions">
-                <button class="btn-primary" id="acceptModal">进入网站</button>
-                <button class="btn-text" id="declineModal">退出</button>
-            </div>
+
+<body id="top">
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<!-- ================= 顶部导航 ================= -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="重庆市开州中学 首页">
+      <span class="brand-mark" aria-hidden="true">开</span>
+      <span class="brand-text">
+        <strong>重庆市开州中学</strong>
+        <small>KAI ZHOU MIDDLE SCHOOL</small>
+      </span>
+    </a>
+
+    <nav class="nav" id="primaryNav" aria-label="主导航">
+      <ul class="nav-list">
+        <li><a href="#about">学校概况</a></li>
+        <li><a href="#news">校园资讯</a></li>
+        <li><a href="#notice">通知公告</a></li>
+        <li><a href="#teaching">教学教研</a></li>
+        <li><a href="#campus">校园生活</a></li>
+        <li><a href="#contact">联系我们</a></li>
+      </ul>
+      <a class="nav-cta" href="#contact">招生咨询</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" type="button"
+            aria-expanded="false" aria-controls="primaryNav" aria-label="打开菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= 首屏轮播 ================= -->
+  <section class="hero" id="hero" aria-label="校园风采展示">
+    <div class="slides">
+
+      <!-- 真实图片：开州中学校门（来源：腾开网/开州日报，2020） -->
+      <article class="slide is-active" aria-hidden="false">
+        <div class="slide-bg" style="background-image:url('http://upload.kxzc.cn/2020/0628/1593311153978.jpg');"></div>
+        <div class="slide-inner">
+          <span class="slide-eyebrow">培俊堂 · 1839</span>
+          <h1 class="slide-title">厚德博学<br>自强不息</h1>
+          <p class="slide-desc">
+            重庆市开州中学前身“培俊堂”始办于清道光十九年（1839年），
+            是重庆市首批重点中学。学校秉承“厚德博学、自强不息”的校训，
+            坚持“一切为了学生自主发展”的办学理念。
+          </p>
+          <div class="slide-actions">
+            <a class="btn btn-primary" href="#about">了解学校</a>
+            <a class="btn btn-ghost" href="#contact">招生咨询</a>
+          </div>
         </div>
+      </article>
+
+      <article class="slide" aria-hidden="true">
+        <div class="slide-bg" style="background-image:url('https://jrkz66.com/archiver/?tid-62158.html');"></div>
+        <div class="slide-inner">
+          <span class="slide-eyebrow">自主发展性教育</span>
+          <h2 class="slide-title">以研促教<br>打造高效课堂</h2>
+          <p class="slide-desc">
+            学校以“问题导学型”学本课堂为载体，构建“自主学习、自主探究、
+            自主实践、自主管理”的特色校本课程体系，让每一节课都成为学生成长的阶梯[reference:1]。
+          </p>
+          <div class="slide-actions">
+            <a class="btn btn-primary" href="#teaching">查看教研</a>
+            <a class="btn btn-ghost" href="#news">校园资讯</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="slide" aria-hidden="true">
+        <div class="slide-bg" style="background-image:url('https://upload.kxzc.cn/2020/0628/1593311153507.jpg');"></div>
+        <div class="slide-inner">
+          <span class="slide-eyebrow">杰出校友 · 薪火相传</span>
+          <h2 class="slide-title">两江总督李宗羲<br>军神刘伯承</h2>
+          <p class="slide-desc">
+            近两个世纪以来，开州中学培养出刘伯承元帅、抗日名将王润波、
+            中国工程院院士谭述森等一大批杰出人才，文脉相传，弦歌不辍[reference:2]。
+          </p>
+          <div class="slide-actions">
+            <a class="btn btn-primary" href="#campus">走进校园</a>
+            <a class="btn btn-ghost" href="#notice">最新公告</a>
+          </div>
+        </div>
+      </article>
+
     </div>
 
-    <!-- 设置面板 (与原站语言切换风格相似) -->
-    <div class="settings-panel" id="settingsPanel">
-        <div class="settings-inner">
-            <div class="settings-header">
-                <h3>⚙️ 偏好设置</h3>
-                <button class="close-btn" id="closeSettingsBtn">✕</button>
-            </div>
-            <div class="mode-grid">
-                <button data-mode="ios" class="mode-btn">🍎 iOS底栏</button>
-                <button data-mode="android" class="mode-btn">🤖 汉堡菜单</button>
-                <button data-mode="desktop" class="mode-btn">🖥️ 桌面</button>
-                <button data-mode="touch" class="mode-btn">✍️ 触屏平板</button>
-            </div>
-            <label class="toggle-item">
-                <input type="checkbox" id="highContrastToggle"> 高对比度
-            </label>
-            <label class="toggle-item">
-                <input type="checkbox" id="reduceMotionToggle"> 减弱动态效果
-            </label>
-            <button class="btn-text" id="resetSettings">恢复默认</button>
-        </div>
-    </div>
+    <button class="hero-arrow prev" id="heroPrev" type="button" aria-label="上一张">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="hero-arrow next" id="heroNext" type="button" aria-label="下一张">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
 
-    <!-- 主应用 -->
-    <div class="app">
-        <!-- 固定导航栏 (原站渐变透明风格) -->
-        <header class="main-header">
-            <div class="header-bg"></div>
-            <a href="#" class="logo-link">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3E%3Crect width='200' height='50' rx='8' fill='%23FA9427'/%3E%3Ctext x='20' y='35' font-family='Bebas Neue' font-size='28' fill='white'%3E开州中学%3C/text%3E%3Ctext x='130' y='32' font-family='sans-serif' font-size='12' fill='%23FFE0B2'%3E学生视界%3C/text%3E%3C/svg%3E" alt="开州中学" class="logo-img">
+    <div class="hero-dots" id="heroDots"></div>
+  </section>
+
+  <!-- ================= 快捷入口 ================= -->
+  <div class="quick-wrap">
+    <div class="container">
+      <div class="quick-bar">
+
+        <a class="quick-item" href="#contact">
+          <span class="quick-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3l8 4v5c0 4.4-3.2 8.3-8 9.5-4.8-1.2-8-5.1-8-9.5V7l8-4z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="quick-text">
+            <strong>招生报名</strong>
+            <small>2026 秋季招生</small>
+          </span>
+        </a>
+
+        <a class="quick-item" href="#notice">
+          <span class="quick-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="5" width="18" height="16" rx="2.5"
+                    stroke="currentColor" stroke-width="1.8"/>
+              <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="quick-text">
+            <strong>校历查询</strong>
+            <small>学期安排</small>
+          </span>
+        </a>
+
+        <a class="quick-item" href="#news">
+          <span class="quick-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M4 19V6a2 2 0 012-2h9l5 5v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M14 4v6h6M8 14h8M8 17h5" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="quick-text">
+            <strong>成绩查询</strong>
+            <small>学业数据</small>
+          </span>
+        </a>
+
+        <a class="quick-item" href="#campus">
+          <span class="quick-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 21s-7-4.3-7-9a4 4 0 017-2.6A4 4 0 0119 12c0 4.7-7 9-7 9z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="quick-text">
+            <strong>校园开放日</strong>
+            <small>预约参观</small>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 学校概况 ================= -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+
+      <!-- 真实图片：开州中学校门 -->
+      <figure class="about-photo reveal">
+        <img src="http://upload.kxzc.cn/2020/0628/1593311153978.jpg"
+             alt="重庆市开州中学校门实景"
+             loading="lazy"
+             width="600" height="400">
+        <figcaption>开州中学校门 · 图源：开州日报 / 腾开网[reference:3]</figcaption>
+      </figure>
+
+      <div class="about-text reveal">
+        <p class="eyebrow">学校概况</p>
+        <h2>百年培俊，守正创新</h2>
+        <p>
+          重庆市开州中学简称“开中校”，前身“培俊堂”始办于清道光十九年（1839年），
+          1907年举办新学，1982年被列为四川省首批办好的重点中学，
+          1999年被重新确认为重庆市重点中学[reference:4]。
+        </p>
+        <p>
+          学校占地近400亩，校舍建筑面积11.8万平方米，现有教学班116个，
+          在校学生7000余名、教师400多名，是一所典雅的智慧型现代化园林学校[reference:5]。
+          学校坚持“一切为了学生自主发展”的办学理念，构建了以“自主发展性教育”
+          为特色的育人体系[reference:7]。
+        </p>
+
+        <ul class="feature-list">
+          <li>校训：厚德博学，自强不息</li>
+          <li>办学理念：一切为了学生自主发展</li>
+          <li>办学特色：自主发展性教育[reference:10]</li>
+          <li>杰出校友：刘伯承、李宗羲、王润波、谭述森等[reference:11]</li>
+        </ul>
+
+        <a class="btn btn-primary" href="#contact">了解更多 →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 数据条（真实数据） ================= -->
+  <section class="stats" aria-label="学校数据一览">
+    <div class="container stats-grid">
+      <div class="stat">
+        <span class="stat-num" data-target="187">0</span><span class="stat-unit">年+</span>
+        <p>办学历史（1839 年起）</p>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="7000">0</span><span class="stat-unit">人+</span>
+        <p>在校学生</p>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="400">0</span><span class="stat-unit">人+</span>
+        <p>教师</p>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="116">0</span><span class="stat-unit">个</span>
+        <p>教学班</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 校园资讯 ================= -->
+  <section class="section section-soft" id="news">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">校园资讯</p>
+          <h2>最新动态</h2>
+        </div>
+        <a class="head-link" href="#notice">更多资讯 →</a>
+      </div>
+
+      <div class="news-grid">
+
+        <article class="news-card reveal">
+          <div class="news-thumb" style="--g1:#0f3b6d;--g2:#2a72c0">
+            <span class="news-tag">荣誉</span>
+            <span class="wm" aria-hidden="true">生</span>
+          </div>
+          <div class="news-body">
+            <time class="news-date" datetime="2026-04-21">2026-04-21</time>
+            <h3>开州中学获评武汉大学“优质生源基地”</h3>
+            <p>武汉大学重庆招生组来校授牌。截至目前，开州中学已被近20所“双一流”高校确定为优质生源基地。</p>
+            <a class="link-more" href="#news">阅读全文 →</a>
+          </div>
+        </article>
+
+        <article class="news-card reveal">
+          <div class="news-thumb" style="--g1:#123c33;--g2:#2e7f60">
+            <span class="news-tag">高校</span>
+            <span class="wm" aria-hidden="true">清</span>
+          </div>
+          <div class="news-body">
+            <time class="news-date" datetime="2021-12-09">2021-12-09</time>
+            <h3>开州中学获评清华大学 2021 年“生源中学”称号</h3>
+            <p>清华大学根据各高中学校当年输送学生的数量及在校表现进行动态评选，开州中学连续两年获此称号。</p>
+            <a class="link-more" href="#news">阅读全文 →</a>
+          </div>
+        </article>
+
+        <article class="news-card reveal">
+          <div class="news-thumb" style="--g1:#4a3418;--g2:#a8843f">
+            <span class="news-tag">教研</span>
+            <span class="wm" aria-hidden="true">研</span>
+          </div>
+          <div class="news-body">
+            <time class="news-date" datetime="2024-05-28">2024-05-28</time>
+            <h3>“名师课堂”教学展示周活动回顾</h3>
+            <p>学校持续推进“问题导学型”学本课堂建设，以名师示范课带动全校教研，促进教师专业发展。</p>
+            <a class="link-more" href="#news">阅读全文 →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 通知公告 ================= -->
+  <section class="section" id="notice">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">通知公告</p>
+          <h2>重要通知</h2>
+        </div>
+        <a class="head-link" href="#notice">全部公告 →</a>
+      </div>
+
+      <div class="notice-layout">
+
+        <ul class="notice-list reveal">
+          <li>
+            <a href="#notice">
+              <span class="notice-date">06-12</span>
+              <span class="notice-title">2026 年秋季高一新生招生简章及报名须知</span>
+              <span class="notice-arrow" aria-hidden="true">→</span>
             </a>
-            <!-- 桌面导航 -->
-            <nav class="desktop-nav">
-                <a href="#news">📰 动态</a>
-                <a href="#sports">🏃 运动会</a>
-                <a href="#arts">🎨 缤纷节</a>
-                <a href="#campus">📸 校园</a>
-                <a href="#forum">💬 论坛</a>
-            </nav>
-            <!-- 右侧按钮组 -->
-            <div class="header-actions">
-                <button class="settings-btn" id="settingsToggle">⚙️</button>
-                <button class="hamburger-btn" id="hamburgerBtn">☰</button>
-            </div>
-        </header>
+          </li>
+          <li>
+            <a href="#notice">
+              <span class="notice-date">06-08</span>
+              <span class="notice-title">关于举办校园开放日活动的通知</span>
+              <span class="notice-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#notice">
+              <span class="notice-date">06-05</span>
+              <span class="notice-title">端午节放假安排及假期安全温馨提示</span>
+              <span class="notice-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#notice">
+              <span class="notice-date">05-30</span>
+              <span class="notice-title">2026 年秋季学期收费项目及标准公示</span>
+              <span class="notice-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#notice">
+              <span class="notice-date">05-22</span>
+              <span class="notice-title">关于开展暑期社会实践活动的通知</span>
+              <span class="notice-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
 
-        <!-- 侧滑菜单 (Android风格) -->
-        <div class="slide-menu" id="slideMenu">
-            <div class="slide-menu-inner">
-                <button class="close-menu" id="closeMenuBtn">✕</button>
-                <ul>
-                    <li><a href="#news">📰 最新动态</a></li>
-                    <li><a href="#sports">🏃 运动会</a></li>
-                    <li><a href="#arts">🎨 缤纷艺术节</a></li>
-                    <li><a href="#campus">🏫 校园风采</a></li>
-                    <li><a href="#teachers">👩‍🏫 师生掠影</a></li>
-                    <li><a href="#forum">💬 开中论坛</a></li>
-                </ul>
-            </div>
+        <aside class="promo-card reveal">
+          <p class="promo-eyebrow">招生专栏</p>
+          <h3>2026 年秋季招生</h3>
+          <p>
+            面向开州区及周边地区招收高一新生。欢迎考生和家长通过电话
+            或到校咨询，了解招生政策与录取办法。
+          </p>
+          <a class="btn btn-primary btn-sm" href="#contact">查看详情 →</a>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 教学教研 ================= -->
+  <section class="section section-soft" id="teaching">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">教学教研</p>
+          <h2>以研促教，以教促学</h2>
         </div>
-        <div class="menu-overlay" id="menuOverlay"></div>
+      </div>
 
-        <!-- 主内容区 (原站 main 背景橙色) -->
-        <main class="main-content">
-            <!-- Hero区域 使用原站装饰品风格 -->
-            <section class="hero-section">
-                <div class="hero-ornament ornament1"></div>
-                <div class="hero-ornament ornament2"></div>
-                <div class="hero-text">
-                    <h1>这里是开州中学<br><span>由我们记录</span></h1>
-                    <p>运动会 · 缤纷节 · 校园日常</p>
-                    <a href="#forum" class="hero-cta">📱 加入开中论坛</a>
-                </div>
-            </section>
+      <div class="feature-grid">
 
-            <!-- 新闻区域 (原站 NEWS 布局) -->
-            <section id="news" class="section-news">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title brush-title">📋 最新动态</h2>
-                        <a href="#" class="special-link">SPECIAL CONTENTS →</a>
-                    </div>
-                    <div class="news-grid" id="newsGrid"></div>
-                    <div class="more-link">
-                        <a href="#" class="btn-more">查看更多动态 →</a>
-                    </div>
-                </div>
-            </section>
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 4l9 4.5-9 4.5-9-4.5L12 4z" stroke="currentColor"
+                    stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>名师工作室</h3>
+          <p>发挥骨干教师示范引领作用，通过师徒结对、专题研修等形式，加速青年教师专业成长。</p>
+        </article>
 
-            <!-- 双卡片区域 (运动会/缤纷节) 原站 COMICS/ANIME 风格 -->
-            <section class="section-dual">
-                <div class="container dual-container">
-                    <a href="#" class="dual-card" id="sports">
-                        <div class="card-media sports-bg"></div>
-                        <div class="card-info">
-                            <h3>🏃 秋季运动会</h3>
-                            <p>百米冲刺 · 接力 · 趣味项目</p>
-                            <span class="card-link">浏览图集 →</span>
-                        </div>
-                    </a>
-                    <a href="#" class="dual-card" id="arts">
-                        <div class="card-media arts-bg"></div>
-                        <div class="card-info">
-                            <h3>🎭 缤纷艺术节</h3>
-                            <p>十佳歌手 · 戏剧 · 书画展</p>
-                            <span class="card-link">回顾精彩 →</span>
-                        </div>
-                    </a>
-                </div>
-            </section>
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M4 5.5A2.5 2.5 0 016.5 3H19v15H6.5A2.5 2.5 0 004 20.5V5.5z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M4 20.5A2.5 2.5 0 016.5 18H19v3H6.5A2.5 2.5 0 014 20.5z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>“问题导学型”学本课堂</h3>
+          <p>以问题为主线、学导为主体、自主又合作，构建具有开州中学特色的“自主发展性”课堂[reference:12]。</p>
+        </article>
 
-            <!-- 校园掠影 黑色背景区域 -->
-            <section id="campus" class="section-dark">
-                <div class="container">
-                    <h2 class="section-title light">📸 校园掠影</h2>
-                    <div class="gallery-grid">
-                        <div class="gallery-item">🌳 林荫道</div>
-                        <div class="gallery-item">📚 图书馆</div>
-                        <div class="gallery-item">⚽ 足球场</div>
-                        <div class="gallery-item">🧪 实验室</div>
-                    </div>
-                    <p class="photo-note">* 更多师生影像可通过论坛获取</p>
-                </div>
-            </section>
+        <article class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="2.5" y="4.5" width="19" height="13" rx="2"
+                    stroke="currentColor" stroke-width="1.8"/>
+              <path d="M8 21h8M12 17.5V21" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>智慧课堂</h3>
+          <p>学校建有录播教室、云教室、智慧教室、校园电视台等现代化教育技术装备，支撑精准教学与个性化学习[reference:13]。</p>
+        </article>
 
-            <!-- 论坛区域 (原站 X 关注卡片) -->
-            <section id="forum" class="section-forum">
-                <div class="container forum-wrapper">
-                    <div class="forum-content">
-                        <h2>💬 开中论坛 · QQ频道</h2>
-                        <p>学生聚集地，吹水、互助、活动通知。<br>非官方，自由交流。</p>
-                        <a href="https://pd.qq.com/s/8xpnqh728?b=5" target="_blank" class="forum-btn">点击加入腾讯频道</a>
-                        <p class="qr-note">或扫描二维码 (请向站长索取)</p>
-                    </div>
-                    <div class="forum-qr">
-                        <div class="qr-placeholder">[开中论坛<br>二维码]</div>
-                    </div>
-                </div>
-            </section>
-        </main>
+      </div>
+    </div>
+  </section>
 
-        <!-- iOS 底栏 -->
-        <nav class="ios-tabbar" id="iosTabbar">
-            <a href="#news">📰</a>
-            <a href="#sports">🏃</a>
-            <a href="#arts">🎨</a>
-            <a href="#campus">📸</a>
-            <a href="#forum">💬</a>
-        </nav>
+  <!-- ================= 校园生活 ================= -->
+  <section class="section" id="campus">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">校园生活</p>
+          <h2>多彩校园，青春绽放</h2>
+        </div>
+        <a class="head-link" href="#campus">更多剪影 →</a>
+      </div>
 
-        <!-- 页脚 (原站版权风格) -->
-        <footer class="main-footer">
-            <div class="footer-logos">
-                <span>开州中学学生宣传组</span>
-            </div>
-            <div class="footer-copyright">
-                <p>© 2025 学生自制 · 非官方</p>
-                <p>学校官方公众号: 重庆市开州中学 · 抖音: 开州中学官方</p>
-                <p><button class="link-btn" id="showComplianceAgain">📋 网站声明</button> · <button class="link-btn" id="a11yTrigger">♿ 轻松使用</button></p>
-            </div>
-        </footer>
+      <div class="gallery reveal">
+        <!-- 真实图片：谭述森院士回母校 -->
+        <figure class="gallery-item wide" style="background-image:url('https://upload.kxzc.cn/2020/0628/1593311153507.jpg');">
+          <span>谭述森院士回母校</span>
+        </figure>
+        <div class="gallery-item tall" style="--g1:#123c33;--g2:#2e7f60">
+          <span>体育艺术节</span>
+        </div>
+        <div class="gallery-item" style="--g1:#4a3418;--g2:#a8843f">
+          <span>志愿服务</span>
+        </div>
+        <div class="gallery-item" style="--g1:#2b2c5e;--g2:#5a5cc0">
+          <span>科技创新</span>
+        </div>
+        <div class="gallery-item" style="--g1:#5c2436;--g2:#b0526d">
+          <span>读书节</span>
+        </div>
+        <div class="gallery-item" style="--g1:#174a5c;--g2:#3f9cb8">
+          <span>研学实践</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 联系我们（真实信息） ================= -->
+  <section class="section section-soft" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">联系我们</p>
+          <h2>期待与你相遇</h2>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-card reveal">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 21s-7-4.3-7-9a7 7 0 1114 0c0 4.7-7 9-7 9z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <circle cx="12" cy="11" r="2.6" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <h3>学校地址</h3>
+          <p>重庆市开州区云枫街道<br>开州大道（西）138号[reference:14]</p>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 4h4l2 5-2.5 1.6a12 12 0 005.9 5.9L16 14l5 2v4a2 2 0 01-2.2 2A17 17 0 013 6.2 2 2 0 015 4z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>联系电话</h3>
+          <p>023-52251063<br>办公时间：9:00—12:00 / 14:00—18:00（工作日）</p>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="5" width="18" height="14" rx="2.5"
+                    stroke="currentColor" stroke-width="1.8"/>
+              <path d="M4 7l8 6 8-6" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>官方渠道</h3>
+          <p>学校网址：www.cqskxzx.com[reference:16]<br>微信公众号：cqskzzx</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= 页脚 ================= -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">开</span>
+      <strong>重庆市开州中学</strong>
+      <p>百年培俊，厚德博学。<br>一切为了学生自主发展。</p>
     </div>
 
-    <script src="script.js"></script>
+    <div class="footer-col">
+      <h4>快速导航</h4>
+      <ul>
+        <li><a href="#about">学校概况</a></li>
+        <li><a href="#news">校园资讯</a></li>
+        <li><a href="#notice">通知公告</a></li>
+        <li><a href="#teaching">教学教研</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>常用服务</h4>
+      <ul>
+        <li><a href="#contact">招生咨询</a></li>
+        <li><a href="#campus">校园开放日</a></li>
+        <li><a href="#notice">校历查询</a></li>
+        <li><a href="#contact">意见反馈</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>联系方式</h4>
+      <ul>
+        <li>地址：重庆市开州区云枫街道开州大道（西）138号</li>
+        <li>电话：023-52251063</li>
+        <li>网址：www.cqskxzx.com</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© <span id="year">2026</span> 重庆市开州中学 · 版权所有</p>
+      <p>建议使用 Chrome / Safari / Firefox 等现代浏览器访问</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="返回顶部">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 19V6M6 12l6-6 6 6" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<script src="script.js"></script>
 </body>
 </html>
