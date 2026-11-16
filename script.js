@@ -1,127 +1,242 @@
-// script.js
-(function(){
-    const body = document.body;
-    const STORAGE_KEY = 'kxzx_prefs';
+(function () {
+  'use strict';
 
-    // DOM
-    const modal = document.getElementById('complianceModal');
-    const acceptBtn = document.getElementById('acceptModal');
-    const declineBtn = document.getElementById('declineModal');
-    const settingsPanel = document.getElementById('settingsPanel');
-    const settingsToggle = document.getElementById('settingsToggle');
-    const closeSettingsBtn = document.getElementById('closeSettingsBtn');
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const slideMenu = document.getElementById('slideMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-    const highContrastToggle = document.getElementById('highContrastToggle');
-    const reduceMotionToggle = document.getElementById('reduceMotionToggle');
-    const modeBtns = document.querySelectorAll('[data-mode]');
-    const resetSettings = document.getElementById('resetSettings');
-    const showComplianceAgain = document.getElementById('showComplianceAgain');
-    const a11yTrigger = document.getElementById('a11ySettingsTrigger');
+  var reducedMotion = !!(window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
-    // 初始化
-    function init() {
-        if (!localStorage.getItem('complianceAccepted')) {
-            modal.style.display = 'flex';
-        } else {
-            modal.style.display = 'none';
+  /* ---------------------------------------------------------
+     1. 顶部导航（移动端展开 / 收起）
+     --------------------------------------------------------- */
+  var header = document.getElementById('siteHeader');
+  var nav    = document.getElementById('primaryNav');
+  var toggle = document.getElementById('navToggle');
+
+  function closeNav() {
+    if (!nav || !nav.classList.contains('is-open')) return;
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', '打开菜单');
+  }
+
+  function openNav() {
+    if (!nav) return;
+    nav.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', '关闭菜单');
+  }
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      if (nav.classList.contains('is-open')) { closeNav(); } else { openNav(); }
+    });
+
+    nav.addEventListener('click', function (e) {
+      var el = e.target;
+      while (el && el !== nav) {
+        if (el.tagName === 'A') { closeNav(); return; }
+        el = el.parentNode;
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!nav.classList.contains('is-open')) return;
+      if (nav.contains(e.target) || toggle.contains(e.target)) return;
+      closeNav();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' || e.keyCode === 27) closeNav();
+    });
+
+    var mq = window.matchMedia('(min-width: 961px)');
+    var handleMQ = function () { if (mq.matches) closeNav(); };
+    if (mq.addEventListener) { mq.addEventListener('change', handleMQ); }
+    else if (mq.addListener) { mq.addListener(handleMQ); }
+  }
+
+  /* ---------------------------------------------------------
+     2. 滚动：头部阴影 + 返回顶部
+     --------------------------------------------------------- */
+  var toTop = document.getElementById('toTop');
+
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if (header) {
+      if (y > 8) { header.classList.add('is-scrolled'); }
+      else { header.classList.remove('is-scrolled'); }
+    }
+    if (toTop) {
+      if (y > 600) { toTop.classList.add('is-visible'); }
+      else { toTop.classList.remove('is-visible'); }
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      if ('scrollBehavior' in document.documentElement.style) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    });
+  }
+
+  /* ---------------------------------------------------------
+     3. 首屏轮播
+     --------------------------------------------------------- */
+  var hero      = document.getElementById('hero');
+  var slides    = [].slice.call(document.querySelectorAll('.slide'));
+  var dotsWrap  = document.getElementById('heroDots');
+  var btnPrev   = document.getElementById('heroPrev');
+  var btnNext   = document.getElementById('heroNext');
+
+  var current = 0;
+  var timer = null;
+  var DURATION = 6000;
+  var dots = [];
+
+  function goTo(index) {
+    if (slides.length < 2) return;
+    if (index === current) return;
+
+    slides[current].classList.remove('is-active');
+    slides[current].setAttribute('aria-hidden', 'true');
+    if (dots[current]) dots[current].classList.remove('is-active');
+
+    current = (index + slides.length) % slides.length;
+
+    slides[current].classList.add('is-active');
+    slides[current].setAttribute('aria-hidden', 'false');
+    if (dots[current]) dots[current].classList.add('is-active');
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAuto() {
+    stopAuto();
+    if (reducedMotion || slides.length < 2) return;
+    timer = setInterval(next, DURATION);
+  }
+  function stopAuto() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+  function restartAuto() { startAuto(); }
+
+  if (slides.length && dotsWrap) {
+    slides.forEach(function (s, i) {
+      s.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', '第 ' + (i + 1) + ' 张幻灯片');
+      b.innerHTML = '<span></span>';
+      if (i === 0) b.classList.add('is-active');
+      b.addEventListener('click', function () { goTo(i); restartAuto(); });
+      dotsWrap.appendChild(b);
+    });
+    dots = [].slice.call(dotsWrap.querySelectorAll('button'));
+
+    if (btnPrev) btnPrev.addEventListener('click', function () { prev(); restartAuto(); });
+    if (btnNext) btnNext.addEventListener('click', function () { next(); restartAuto(); });
+
+    if (hero) {
+      hero.addEventListener('mouseenter', stopAuto);
+      hero.addEventListener('mouseleave', startAuto);
+
+      var startX = 0, startY = 0, tracking = false;
+      hero.addEventListener('touchstart', function (e) {
+        var t = e.touches[0];
+        startX = t.clientX;
+        startY = t.clientY;
+        tracking = true;
+      }, { passive: true });
+
+      hero.addEventListener('touchend', function (e) {
+        if (!tracking) return;
+        tracking = false;
+        var t = e.changedTouches[0];
+        var dx = t.clientX - startX;
+        var dy = t.clientY - startY;
+        if (Math.abs(dx) > 46 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) { next(); } else { prev(); }
+          restartAuto();
         }
-        const saved = localStorage.getItem(STORAGE_KEY);
-        let prefs = { mode: 'desktop', highContrast: false, reduceMotion: false };
-        if (saved) try { prefs = { ...prefs, ...JSON.parse(saved) }; } catch(e){}
-        applyMode(prefs.mode);
-        highContrastToggle.checked = prefs.highContrast;
-        reduceMotionToggle.checked = prefs.reduceMotion;
-        body.classList.toggle('high-contrast', prefs.highContrast);
-        body.classList.toggle('reduce-motion', prefs.reduceMotion);
-        highlightActiveMode(prefs.mode);
-        renderNews();
+      }, { passive: true });
     }
 
-    function renderNews() {
-        const grid = document.getElementById('newsGrid');
-        if(!grid) return;
-        const items = [
-            {title:'秋季运动会圆满落幕', desc:'高三(3)班破校纪录', date:'2025.04'},
-            {title:'缤纷节海选启动', desc:'歌手、舞蹈、话剧报名中', date:'2025.04'},
-            {title:'校园摄影展征稿', desc:'用镜头记录开中瞬间', date:'2025.03'},
-        ];
-        grid.innerHTML = items.map(item => `
-            <div class="dual-card" style="padding:20px">
-                <h4>${item.title}</h4>
-                <p>${item.desc}</p>
-                <small>${item.date}</small>
-            </div>
-        `).join('');
-    }
-
-    function applyMode(mode) {
-        body.classList.remove('mode-ios','mode-android','mode-desktop','mode-touch');
-        body.classList.add(`mode-${mode}`);
-    }
-    function highlightActiveMode(mode) {
-        modeBtns.forEach(btn => {
-            btn.style.background = btn.dataset.mode === mode ? 'var(--primary)' : '#f0f0f0';
-            btn.style.color = btn.dataset.mode === mode ? 'white' : 'black';
-        });
-    }
-    function savePrefs() {
-        const prefs = {
-            mode: body.className.match(/mode-(\w+)/)?.[1] || 'desktop',
-            highContrast: body.classList.contains('high-contrast'),
-            reduceMotion: body.classList.contains('reduce-motion')
-        };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
-    }
-
-    // 事件绑定
-    acceptBtn?.addEventListener('click', ()=>{
-        localStorage.setItem('complianceAccepted','true');
-        modal.style.display = 'none';
-    });
-    declineBtn?.addEventListener('click', ()=>{
-        alert('请关注微信公众号: 重庆市开州中学');
-        window.location.href = 'https://weixin.qq.com';
-    });
-    showComplianceAgain?.addEventListener('click', (e)=>{
-        e.preventDefault();
-        modal.style.display = 'flex';
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { stopAuto(); } else { startAuto(); }
     });
 
-    settingsToggle?.addEventListener('click', ()=> settingsPanel.classList.add('open'));
-    closeSettingsBtn?.addEventListener('click', ()=> settingsPanel.classList.remove('open'));
-    a11yTrigger?.addEventListener('click', ()=> settingsPanel.classList.add('open'));
+    startAuto();
+  }
 
-    modeBtns.forEach(btn => btn.addEventListener('click', ()=>{
-        const mode = btn.dataset.mode;
-        applyMode(mode);
-        highlightActiveMode(mode);
-        savePrefs();
-    }));
-    highContrastToggle.addEventListener('change', e=>{ body.classList.toggle('high-contrast', e.target.checked); savePrefs(); });
-    reduceMotionToggle.addEventListener('change', e=>{ body.classList.toggle('reduce-motion', e.target.checked); savePrefs(); });
-    resetSettings.addEventListener('click', ()=>{
-        body.classList.remove('high-contrast','reduce-motion');
-        highContrastToggle.checked = false;
-        reduceMotionToggle.checked = false;
-        applyMode('desktop');
-        highlightActiveMode('desktop');
-        savePrefs();
-    });
+  /* ---------------------------------------------------------
+     4. 滚动淡入（IntersectionObserver）
+     --------------------------------------------------------- */
+  var revealEls = [].slice.call(document.querySelectorAll('.reveal'));
 
-    hamburgerBtn?.addEventListener('click', ()=>{
-        slideMenu.classList.add('open');
-        menuOverlay.style.display = 'block';
-    });
-    closeMenuBtn?.addEventListener('click', closeMenu);
-    menuOverlay?.addEventListener('click', closeMenu);
-    function closeMenu(){
-        slideMenu.classList.remove('open');
-        menuOverlay.style.display = 'none';
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---------------------------------------------------------
+     5. 数字滚动
+     --------------------------------------------------------- */
+  function animateCount(el) {
+    var target = parseFloat(el.getAttribute('data-target')) || 0;
+    var duration = 1400;
+    var startTime = null;
+
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased);
+      if (progress < 1) { window.requestAnimationFrame(step); }
+      else { el.textContent = target; }
     }
-    slideMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click', closeMenu));
+    window.requestAnimationFrame(step);
+  }
 
-    init();
+  var countEls = [].slice.call(document.querySelectorAll('[data-target]'));
+
+  if ('IntersectionObserver' in window && !reducedMotion && window.requestAnimationFrame) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          cio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    countEls.forEach(function (el) { cio.observe(el); });
+  } else {
+    countEls.forEach(function (el) {
+      el.textContent = el.getAttribute('data-target');
+    });
+  }
+
+  /* ---------------------------------------------------------
+     6. 页脚年份
+     --------------------------------------------------------- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+
 })();
